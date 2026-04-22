@@ -1,0 +1,29 @@
+<div class="login-container">
+    <div class="image-container">
+        <img src="assets/images/people-nocolor.jpg" alt="Login Image" class="image" />
+    </div>
+    <div class="form-container">
+        <div class="mb-10">
+            <h1 class="mb-5">Welcome back</h1>
+            <p class="pr-100 mt-5 login-description">Login to your HR Management Portal</p>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="loginUser()" class="login-form">
+            <div class="field mb-15">
+                <label class="field-label">Email address</label>
+                <input pInputText formControlName="email" placeholder="Please enter email" />
+                <small *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid"
+                    class="red">
+                    Enter valid email  
+                </small>
+            </div>
+
+            <div class="field mb-15">
+                <label class="field-label">Password</label>
+                <p-password formControlName="password" [feedback]="false"></p-password>
+            </div>
+            <span class="register-message">Don't have an account? <a (click)="registerUser()" class="register-here-button">Register here</a></span>
+
+            <button type="submit" [disabled]="loginForm.invalid" class="login-button">Login</button>
+        </form>
+    </div>
+</div>

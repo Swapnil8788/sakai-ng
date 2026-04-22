@@ -229,6 +229,7 @@ interface expandedRows {
                         <td>{{ customer.status }}</td>
                         <td>{{ customer.activity }}</td>
                         <td>{{ customer.representative.name }}</td>
+                    
                         <td alignFrozen="right" pFrozenColumn [frozen]="balanceFrozen" [ngClass]="{ 'font-bold': balanceFrozen }">
                             {{ formatCurrency(customer.balance) }}
                         </td>

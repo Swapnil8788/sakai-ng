@@ -1,0 +1,89 @@
+<div class="login-container">
+    <div class="image-container">
+        <img src="/assets/images/people-nocolor.jpg" alt="Login Image" class="image" />
+    </div>
+    <div class="form-container">
+        <div>
+            <h1 class="mb-5">Welcome back</h1>
+            <p class="pr-100 mt-5 login-description">All HR Management Solutions in One Place</p>
+        </div>
+        <form [formGroup]="registerForm" (ngSubmit)="registerUser()" class="login-form">
+            <div class="field mb-15">
+                <label class="field-label">Email address</label>
+                <input pInputText formControlName="email" placeholder="Please enter email" />
+                <small *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid"
+                    class="red">
+                    Enter valid email
+                </small>
+            </div>
+            <div class="field mb-15">
+                <label class="field-label">Name</label>
+                <input pInputText formControlName="name" placeholder="Please enter your name" />
+                <small *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid"
+                    class="red">
+                    Enter valid name
+                </small>
+            </div>
+
+           <div class="field mb-15">
+                <label class="field-label">Password</label>
+                <p-password formControlName="password" [feedback]="false"></p-password>
+                <small *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid"
+                    class="red">
+                    Password is required
+                </small>
+            </div>
+
+            <div class="field mb-15">
+                <label class="field-label">Confirm Password</label>
+                <p-password formControlName="confirm" [feedback]="false"></p-password>
+
+                <small *ngIf="registerForm.get('confirm')?.touched && registerForm.get('confirm')?.invalid"
+                    class="red">
+                    Confirm password is required
+                </small>
+                <small *ngIf="registerForm.errors?.['passwordMatchValidator'] && registerForm.get('confirm')?.touched"
+                    class="red">
+                    Passwords do not match
+                </small>
+            </div>
+
+            <div class="field mb-15">
+                <label class="field-label">Phone No.</label>
+                <input pInputText formControlName="phoneNo" placeholder="Please enter your phone number" />
+                <small *ngIf="registerForm.get('phoneNo')?.touched && registerForm.get('phoneNo')?.invalid"
+                    class="red">
+                    Enter valid phone number
+                </small>
+            </div>
+
+            <div class="field mb-15">
+                <label class="field-label">Age</label>
+                <input pInputText type="number" max="100" formControlName="age" placeholder="Please enter your age" />
+                <small *ngIf="registerForm.get('age')?.touched && registerForm.get('age')?.invalid"
+                    class="red">
+                    Enter valid age
+                </small>
+            </div>
+            
+            <div class="field mb-15">
+                <label class="field-label">Roles</label>
+                <p-multiselect [options]="roleOptions" formControlName="roles" optionLabel="codeDesc" optionValue="codeDesc" 
+                      placeholder="Select Roles"  />
+                <small *ngIf="registerForm.get('roles')?.touched && registerForm.get('roles')?.invalid"
+                    class="red">
+                    Enter valid roles
+                </small>
+            </div>
+
+            
+            <div class="mb-10">
+                <p-checkbox formControlName="isTnC" [binary]="true" name="tNCCheckbox" inputId="tNCCheckbox" class="tNC-checkbox"/>
+                <label class="ml-10 pointer" for="tNCCheckbox">I agree to the terms and conditions</label>
+            </div>
+            <span class="register-message">Already Have an account? <a (click)="loginUser()" class="register-here-button">Login here</a></span>
+
+            <button type="submit" [disabled]="registerForm.invalid" class="login-button">Register</button>
+        </form>
+    </div>
+</div>

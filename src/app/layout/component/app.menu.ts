@@ -25,7 +25,10 @@ export class AppMenu {
         this.model = [
             {
                 label: 'Home',
-                items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }]
+                items: [
+                    { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
+                    { label: 'Organisations', icon: 'pi pi-fw pi-home', routerLink: ['/pages/organisations'] }
+                ]
             },
             {
                 label: 'UI Components',
@@ -158,7 +161,7 @@ export class AppMenu {
                     {
                         label: 'View Source',
                         icon: 'pi pi-fw pi-github',
-                        url: 'https://github.com/primefaces/sakai-ng',
+                        url: 'https://github.com/primefaces/HRMANAGEMENT-ng',
                         target: '_blank'
                     }
                 ]

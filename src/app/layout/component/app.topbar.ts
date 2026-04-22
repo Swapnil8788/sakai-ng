@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { StyleClassModule } from 'primeng/styleclass';
 import { AppConfigurator } from './app.configurator';
 import { LayoutService } from '@/app/layout/service/layout.service';
+import { Auth } from '@/app/services/auth';
 
 @Component({
     selector: 'app-topbar',
@@ -33,7 +34,7 @@ import { LayoutService } from '@/app/layout/service/layout.service';
                         />
                     </g>
                 </svg>
-                <span>SAKAI</span>
+                <span>HRMANAGEMENT</span>
             </a>
         </div>
 
@@ -68,7 +69,8 @@ import { LayoutService } from '@/app/layout/service/layout.service';
                         <i class="pi pi-calendar"></i>
                         <span>Calendar</span>
                     </button>
-                    <button type="button" class="layout-topbar-action">
+                    <button type="button" class="layout-topbar-action"
+                        (click)="logoutUser()">
                         <i class="pi pi-inbox"></i>
                         <span>Messages</span>
                     </button>
@@ -83,6 +85,8 @@ import { LayoutService } from '@/app/layout/service/layout.service';
 })
 export class AppTopbar {
     items!: MenuItem[];
+    private auth = inject(Auth);
+    private router = inject(Router);   
 
     layoutService = inject(LayoutService);
 
@@ -91,5 +95,20 @@ export class AppTopbar {
             ...state,
             darkTheme: !state.darkTheme
         }));
+    }
+    logoutUser() {
+        this.auth.logout().subscribe({
+            next: (res) => {
+                localStorage.clear();
+                this.router.navigate(['auth/login']);
+                console.log("Logout successful", res);
+            },
+            error: (err) => {
+                console.error("Logout failed", err);
+            },
+            complete: () => {
+                console.log("Logout request completed");
+            }
+        });
     }
 }
