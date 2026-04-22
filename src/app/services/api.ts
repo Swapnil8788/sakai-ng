@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class Api {
   URL = 'hrm-dev01-fyf4g6djdzcfejcn.centralindia-01.azurewebsites.net'
+  // URL = 'http://localhost:5085'
   constructor(private http: HttpClient, private router: Router) {
 
   }
