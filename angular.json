@@ -22,12 +22,7 @@
                         "browser": "src/main.ts",
                         "tsConfig": "tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
-                        "assets": [
-                            {
-                                "glob": "**/*",
-                                "input": "public"
-                            }
-                        ],
+                        "assets": ["src/assets"],
                         "styles": [
                             "src/assets/styles.scss",
                             "src/assets/tailwind.css"
